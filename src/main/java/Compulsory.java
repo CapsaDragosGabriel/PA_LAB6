@@ -7,7 +7,9 @@ class Compulsory {
 
     public static void main(String[] args)
     {
-        new MainFrame().setVisible(true);
+        MainFrame frame=new MainFrame();
+        frame.setVisible(true);
+       // new MainFrame().setVisible(true);
 
     }
 }

@@ -62,6 +62,14 @@ public class ConfigPanel extends JPanel {
         cols=(Integer)(spinner2.getValue());
     }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
     private void createGame(ActionEvent actionEvent) {
         frame.setCols(cols);
         frame.setRows(rows);

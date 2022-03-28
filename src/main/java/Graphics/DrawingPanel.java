@@ -3,10 +3,12 @@ package Graphics;
 import javax.swing.*;
 import java.awt.*;
 
+import static java.lang.Thread.sleep;
+
 public class DrawingPanel extends JPanel {
     private final MainFrame frame;
     int rows, cols;
-    int canvasWidth = 400, canvasHeight = 400;
+    int canvasWidth = 600, canvasHeight = 600;
     int boardWidth, boardHeight;
     int cellWidth, cellHeight;
     int padX, padY;
@@ -14,10 +16,13 @@ public class DrawingPanel extends JPanel {
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
-         //init(frame.configPanel.getRows(), frame.configPanel.getCols());
+
+        init(frame.configPanel.getRows(), frame.configPanel.getCols());
+
     }
 
     final void init(int rows, int cols) {
+
         this.rows = rows;
         this.cols = cols;
         this.padX = stoneSize + 10;
