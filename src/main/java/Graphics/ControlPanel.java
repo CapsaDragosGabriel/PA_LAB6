@@ -9,18 +9,18 @@ public class ControlPanel extends JPanel {
     JButton exitBtn = new JButton("Exit");
     JButton loadBtn = new JButton("Load");
     JButton saveBtn = new JButton("Save");
-    //create all buttons (Load, Exit, etc.)
-// ...TODO
+
     public ControlPanel(MainFrame frame) {
-        this.frame = frame; init();
+        this.frame = frame;
+        init();
     }
     private void init() {
         //change the default layout manager (just for fun)
         setLayout(new GridLayout(1, 4));
         //add all buttons ...TODO
-        this.add(saveBtn,new GridLayout(1,4) );
-        this.add(loadBtn,new GridLayout(2,3));
-        this.add(exitBtn,new GridLayout(3,2));
+        this.add(saveBtn,new GridLayout(1,1) );
+        this.add(loadBtn,new GridLayout(1,3));
+        this.add(exitBtn,new GridLayout(1,2));
 
         //configure listeners for all buttons
         exitBtn.addActionListener(this::exitGame);
@@ -39,5 +39,5 @@ public class ControlPanel extends JPanel {
     private void exitGame(ActionEvent e) {
         frame.dispose();
     }
- //...TODO
+
 }

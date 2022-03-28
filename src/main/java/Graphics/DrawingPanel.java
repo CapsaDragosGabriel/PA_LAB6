@@ -21,6 +21,22 @@ public class DrawingPanel extends JPanel {
 
     }
 
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
     final void init(int rows, int cols) {
 
         this.rows = rows;
@@ -34,6 +50,17 @@ public class DrawingPanel extends JPanel {
         setPreferredSize(new Dimension(canvasWidth, canvasHeight));
     }
 
+    void resize()
+    {
+
+        this.padX = stoneSize + 10;
+        this.padY = stoneSize + 10;
+        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
+        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
+        this.boardWidth = (cols - 1) * cellWidth;
+        this.boardHeight = (rows - 1) * cellHeight;
+        setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+    }
     @Override
     protected void paintComponent(Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
@@ -42,6 +69,7 @@ public class DrawingPanel extends JPanel {
         paintGrid(g);
         paintSticks(g);
         paintStones(g);
+        repaint();
     }
 
     private void paintStones(Graphics2D g) {
@@ -62,11 +90,11 @@ public class DrawingPanel extends JPanel {
         }
         //vertical lines TODO
         for (int clmn = 0; clmn < cols; clmn++) {
-            int x1 = padX;
-            int y1 = padY + clmn * cellHeight;
-            int x2 = padX + boardWidth;
-            int y2 = y1;
-            g.drawLine(y1, x1, y2, x2);
+            int x1 = padX + clmn*cellWidth;
+            int y1 = padY;
+            int x2 = x1;
+            int y2 = padX + boardHeight;
+            g.drawLine(x1, y1, x2, y2);
         }
 
         //intersections

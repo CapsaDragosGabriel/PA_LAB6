@@ -10,7 +10,7 @@ public class ConfigPanel extends JPanel {
     JSpinner spinner1;
     JSpinner spinner2;
     JButton createBtn=new JButton("Create");
-    int rows,cols;
+    int rows=20,cols=15;
     public MainFrame getFrame() {
         return frame;
     }
@@ -39,8 +39,8 @@ public class ConfigPanel extends JPanel {
     private void init() {
         //create the label and the spinner1
         label = new JLabel("Grid size:");
-        spinner1 = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
-        spinner2= new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(rows, 2, 100, 1));
+        spinner2= new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
         //create spinners for rows and cols, and the button
         
         
@@ -56,10 +56,12 @@ public class ConfigPanel extends JPanel {
 
     private void setRows(ChangeEvent changeEvent) {
         rows=(Integer)(spinner1.getValue());
+        frame.setRows(rows);
     }
 
     private void setCols(ChangeEvent changeEvent) {
         cols=(Integer)(spinner2.getValue());
+        frame.setCols(cols);
     }
 
     public int getRows() {
@@ -71,8 +73,15 @@ public class ConfigPanel extends JPanel {
     }
 
     private void createGame(ActionEvent actionEvent) {
+
         frame.setCols(cols);
         frame.setRows(rows);
+        frame.canvas.setCols(cols);
+        frame.canvas.setRows(rows);
+        frame.canvas.resize();
+       frame.canvas.paintComponent(frame.canvas.getGraphics());
+
+
     }
     
 }
