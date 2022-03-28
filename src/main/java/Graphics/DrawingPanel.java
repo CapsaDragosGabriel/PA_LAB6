@@ -12,7 +12,7 @@ public class DrawingPanel extends JPanel {
     int boardWidth, boardHeight;
     int cellWidth, cellHeight;
     int padX, padY;
-    int stoneSize = 20;
+    int stoneSize = 25;
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;

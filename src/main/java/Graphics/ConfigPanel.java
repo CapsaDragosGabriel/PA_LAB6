@@ -10,7 +10,7 @@ public class ConfigPanel extends JPanel {
     JSpinner spinner1;
     JSpinner spinner2;
     JButton createBtn=new JButton("Create");
-    int rows=20,cols=15;
+    int rows=10,cols=12;
     public MainFrame getFrame() {
         return frame;
     }
@@ -31,20 +31,18 @@ public class ConfigPanel extends JPanel {
         this.spinner1 = spinner1;
     }
 
-    //...
     public ConfigPanel(MainFrame frame) {
         this.frame = frame;
         init();
     }
     private void init() {
         //create the label and the spinner1
-        label = new JLabel("Grid size:");
+        label = new JLabel("Grid size (RxC):");
         spinner1 = new JSpinner(new SpinnerNumberModel(rows, 2, 100, 1));
         spinner2= new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
         //create spinners for rows and cols, and the button
         
         
- //...TODO
         add(label); //JPanel uses FlowLayout by default
         add(spinner1);
         add(spinner2);
