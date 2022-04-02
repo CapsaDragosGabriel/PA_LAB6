@@ -10,6 +10,8 @@ public class MainFrame extends JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
+    GameGraph<GameNode,GameEdge> gameGraph;
+    int player=1;
     int rows,cols;
 
     public MainFrame() {

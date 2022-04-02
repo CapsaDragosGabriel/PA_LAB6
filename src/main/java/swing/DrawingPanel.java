@@ -67,7 +67,7 @@ public class DrawingPanel extends JPanel {
 
     void drawStone (int x, int y)
     {
-       // int mouseColumn=x/
+
     }
     void resize()
     {
@@ -89,11 +89,12 @@ public class DrawingPanel extends JPanel {
        //if (!initiated)
         paintSticks(g);
         paintStones(g);
-    //    repaint();
+        repaint();
 
     }
 
     private void paintStones(Graphics2D g) {
+
     }
 
     private void paintSticks(Graphics2D g) {
@@ -110,6 +111,7 @@ public class DrawingPanel extends JPanel {
                 int y2 = y1;
                 if (Math.random() > 0.4) {
                     g.drawLine(x1, y1, x2, y2);
+
                     sticksHorizontal.add(x2);
                 }
             }

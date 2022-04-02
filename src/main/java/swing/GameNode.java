@@ -1,6 +1,7 @@
 package swing;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class GameNode implements Serializable {
     private double coordX;
@@ -40,5 +41,18 @@ public class GameNode implements Serializable {
 
     public void setPlayer(int player) {
         this.player = player;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GameNode)) return false;
+        GameNode gameNode = (GameNode) o;
+        return Double.compare(gameNode.getCoordX(), getCoordX()) == 0 && Double.compare(gameNode.getCoordY(), getCoordY()) == 0 && getPlayer() == gameNode.getPlayer();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCoordX(), getCoordY(), getPlayer());
     }
 }
