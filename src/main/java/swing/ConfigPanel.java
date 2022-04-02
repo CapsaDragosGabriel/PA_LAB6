@@ -41,7 +41,7 @@ public class ConfigPanel extends JPanel {
         spinner1 = new JSpinner(new SpinnerNumberModel(rows, 2, 100, 1));
         spinner2= new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
         //create spinners for rows and cols, and the button
-        
+
         
         add(label); //JPanel uses FlowLayout by default
         add(spinner1);
@@ -72,11 +72,16 @@ public class ConfigPanel extends JPanel {
 
     private void createGame(ActionEvent actionEvent) {
 
+        frame.gameGraph.removeAllEdges(frame.gameGraph.getGameEdgeSet());
+        frame.gameGraph.removeAllVertices(frame.gameGraph.getGameNodeSet());
         frame.setCols(cols);
         frame.setRows(rows);
         frame.canvas.setCols(cols);
         frame.canvas.setRows(rows);
         frame.canvas.resize();
+        frame.setPlayer(1);
+        frame.gameGraph.setPrevGameNode(null);
+        frame.gameGraph.depopulateNodes();
        frame.canvas.paintComponent(frame.canvas.getGraphics());
 
 

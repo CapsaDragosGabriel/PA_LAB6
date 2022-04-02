@@ -6,15 +6,59 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
+import lombok.Data;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphIterables;
 import org.jgrapht.GraphType;
+@Data
 public class GameGraph<V extends GameNode, E extends GameEdge> implements Serializable,Graph<V,E> {
     private  int nrRows;
     private int noClmns;
     private Set<GameNode> gameNodeSet= new HashSet<>();
     private Set<GameEdge> gameEdgeSet= new HashSet<>();
-    private GameNode anteriorGameNode=null;
+    private GameNode prevGameNode=null;
+
+    public void depopulateNodes()
+    {
+        for (GameNode node : gameNodeSet)
+            gameNodeSet.remove(node);
+    }
+
+    public boolean isValidNode(GameNode node)
+    {
+        if (prevGameNode==null)
+            return true;
+
+        if (node.getPlayer()!=0) {
+            System.out.println("node used");
+            return false;
+        }
+
+        for (GameEdge edge : this.gameEdgeSet)
+        {
+            if (edge.contains(prevGameNode)&& edge.contains(node))
+                return true;
+        }
+        return false;
+    }
+    public GameNode getGameNodeAtCoords(int x, int y,int player) {
+        for (GameNode node: gameNodeSet)
+        {
+            if (Math.sqrt((x-node.getCoordX())* (x-node.getCoordX()) + (y-node.getCoordY()) * (y-node.getCoordY()))<=DrawingPanel.STONE_SIZE)
+            {
+                if (isValidNode(node)) {
+                    node.setPlayer(player);
+                    prevGameNode=node;
+
+                    return node;
+
+                }
+            }
+
+        }
+
+        return null;
+    }
 
     @Override
     public Set<E> getAllEdges(V v, V v1) {
@@ -266,5 +310,16 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
     @Override
     public GraphIterables<V, E> iterables() {
         return Graph.super.iterables();
+    }
+
+    @Override
+    public String toString() {
+        return "GameGraph{" +
+                "nrRows=" + nrRows +
+                ", noClmns=" + noClmns +
+                ", gameNodeSet=" + gameNodeSet +
+                ", gameEdgeSet=" + gameEdgeSet +
+                ", anteriorGameNode=" + prevGameNode +
+                '}';
     }
 }

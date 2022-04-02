@@ -10,7 +10,7 @@ public class MainFrame extends JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
-    GameGraph<GameNode,GameEdge> gameGraph;
+    GameGraph<GameNode,GameEdge> gameGraph=new GameGraph<>();
     int player=1;
     int rows,cols;
 
@@ -35,11 +35,41 @@ public class MainFrame extends JFrame {
         this.add(controlPanel,BorderLayout.SOUTH);
        this.add(canvas, BorderLayout.CENTER);
 
+
+        gameGraph.removeAllEdges(gameGraph.getGameEdgeSet());
+       gameGraph.removeAllVertices(gameGraph.getGameNodeSet());
+        setCols(cols);
+        setRows(rows);
+        canvas.setCols(cols);
+        canvas.setRows(rows);
+        canvas.resize();
+       setPlayer(1);
+        gameGraph.setPrevGameNode(null);
+       gameGraph.depopulateNodes();
+
  //...TODO
 
         //invoke the layout manager
         pack();
     }
 
-
+    public int gameFinished()
+    {
+        for (GameNode node : gameGraph.getGameNodeSet())
+        {
+            if (gameGraph.isValidNode(node))
+                return 0;
+        }
+        if (player==1) {
+            System.out.println("Player 2 won!");
+            return 2;
+        }
+        System.out.println("Player 1 won!");
+        return 1;
+    }
+    public void swapPlayer() {
+        if (player==1) player=2;
+        else if (player==2) player=1;
+       gameFinished();
+    }
 }

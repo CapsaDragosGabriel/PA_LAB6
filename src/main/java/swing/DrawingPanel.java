@@ -11,13 +11,14 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class DrawingPanel extends JPanel {
+    public static final int STONE_SIZE=25;
     private final MainFrame frame;
     int rows, cols;
     int canvasWidth = 600, canvasHeight = 600;
     int boardWidth, boardHeight;
     int cellWidth, cellHeight;
     int padX, padY;
-    int stoneSize = 25;
+    
     boolean initiated= Boolean.FALSE;
     List<Integer> sticksHorizontal=new ArrayList<>();
     List<Integer> sticksVertical=new ArrayList<>();
@@ -48,8 +49,8 @@ public class DrawingPanel extends JPanel {
 
         this.rows = rows;
         this.cols = cols;
-        this.padX = stoneSize + 10;
-        this.padY = stoneSize + 10;
+        this.padX =STONE_SIZE + 10;
+        this.padY = STONE_SIZE + 10;
         this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
         this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
         this.boardWidth = (cols - 1) * cellWidth;
@@ -67,13 +68,21 @@ public class DrawingPanel extends JPanel {
 
     void drawStone (int x, int y)
     {
+        GameNode node = frame.gameGraph.getGameNodeAtCoords(x,y, frame.player);
+        if (node==null) return;
+        Graphics graphics=this.getGraphics();
+        Graphics2D g = (Graphics2D) graphics;
+        if(frame.player==1)g.setColor(Color.RED);
+        else g.setColor(Color.BLUE);
+        g.fillOval((int)node.getCoordX() - STONE_SIZE / 2, (int)node.getCoordY() - STONE_SIZE / 2, STONE_SIZE, STONE_SIZE);
+        frame.swapPlayer();
 
     }
     void resize()
     {
 
-        this.padX = stoneSize + 10;
-        this.padY = stoneSize + 10;
+        this.padX = STONE_SIZE + 10;
+        this.padY = STONE_SIZE + 10;
         this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
         this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
         this.boardWidth = (cols - 1) * cellWidth;
@@ -89,7 +98,7 @@ public class DrawingPanel extends JPanel {
        //if (!initiated)
         paintSticks(g);
         paintStones(g);
-        repaint();
+       // repaint();
 
     }
 
@@ -111,8 +120,12 @@ public class DrawingPanel extends JPanel {
                 int y2 = y1;
                 if (Math.random() > 0.4) {
                     g.drawLine(x1, y1, x2, y2);
-
-                    sticksHorizontal.add(x2);
+                    GameNode gameNode1=new GameNode(x1,y1);
+                    GameNode gameNode2=new GameNode(x2,y2);
+                    frame.gameGraph.addEdge(gameNode1,gameNode2);
+                    frame.gameGraph.addVertex(gameNode1);
+                    frame.gameGraph.addVertex(gameNode2);
+                   // sticksHorizontal.add(x2);
                 }
             }
         }
@@ -126,7 +139,12 @@ public class DrawingPanel extends JPanel {
 
                 if (Math.random() > 0.4) {
                     g.drawLine(x1, y1, x2, y2);
-                    sticksHorizontal.add(x2);
+                    GameNode gameNode1=new GameNode(x1,y1);
+                    GameNode gameNode2=new GameNode(x2,y2);
+                    frame.gameGraph.addEdge(gameNode1,gameNode2);
+                    frame.gameGraph.addVertex(gameNode1);
+                    frame.gameGraph.addVertex(gameNode2);
+                  //  sticksHorizontal.add(x2);
                 }
             }
         }
@@ -156,7 +174,7 @@ public class DrawingPanel extends JPanel {
                 int x = padX + col * cellWidth;
                 int y = padY + row * cellHeight;
                 g.setColor(Color.LIGHT_GRAY);
-                g.drawOval(x - stoneSize / 2, y - stoneSize / 2, stoneSize, stoneSize);
+                g.drawOval(x - STONE_SIZE / 2, y - STONE_SIZE / 2, STONE_SIZE, STONE_SIZE);
             }
         }
     }

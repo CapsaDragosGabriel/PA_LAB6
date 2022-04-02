@@ -37,6 +37,7 @@ public class ControlPanel extends JPanel {
     }
 
     private void exitGame(ActionEvent e) {
+        System.out.println(frame.getGameGraph());
         frame.dispose();
     }
 

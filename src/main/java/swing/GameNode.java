@@ -48,11 +48,20 @@ public class GameNode implements Serializable {
         if (this == o) return true;
         if (!(o instanceof GameNode)) return false;
         GameNode gameNode = (GameNode) o;
-        return Double.compare(gameNode.getCoordX(), getCoordX()) == 0 && Double.compare(gameNode.getCoordY(), getCoordY()) == 0 && getPlayer() == gameNode.getPlayer();
+        return Double.compare(gameNode.getCoordX(), getCoordX()) == 0 && Double.compare(gameNode.getCoordY(), getCoordY()) == 0;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getCoordX(), getCoordY(), getPlayer());
+    }
+
+    @Override
+    public String toString() {
+        return "GameNode{" +
+                "coordX=" + coordX +
+                ", coordY=" + coordY +
+                ", player=" + player +
+                '}';
     }
 }

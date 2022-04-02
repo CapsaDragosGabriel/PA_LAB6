@@ -16,6 +16,7 @@ class Compulsory{
        //launch(args);
         new MainFrame().setVisible(true);
 
+
     }
 /*
     @Override
