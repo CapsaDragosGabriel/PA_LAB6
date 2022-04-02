@@ -14,7 +14,7 @@ class Compulsory{
 
     public static void main(String[] args) {
        //launch(args);
-         new MainFrame().setVisible(true);
+        // new MainFrame().setVisible(true);
 
     }
 /*

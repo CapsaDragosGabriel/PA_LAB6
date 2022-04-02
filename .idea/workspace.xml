@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be2cec48-a8f4-40a9-aa64-8b55f55d2c4b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/swing/GameEdge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Compulsory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Compulsory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Compulsory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/ConfigPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/ControlPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/DrawingPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/MainFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +111,7 @@
       <workItem from="1648893801705" duration="1185000" />
       <workItem from="1648895014880" duration="10000" />
       <workItem from="1648895199943" duration="431000" />
-      <workItem from="1648896414406" duration="1401000" />
+      <workItem from="1648896414406" duration="2796000" />
     </task>
     <servers />
   </component>
