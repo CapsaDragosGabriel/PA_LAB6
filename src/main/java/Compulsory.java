@@ -1,15 +1,33 @@
 // Java Program to create a
 // blank label and add text to it.
 
-import Graphics.MainFrame;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import swing.MainFrame;
 
-class Compulsory {
+class Compulsory{
 
-    public static void main(String[] args)
-    {
-        MainFrame frame=new MainFrame();
-        frame.setVisible(true);
-       // new MainFrame().setVisible(true);
+    Button createBtn;
+
+    public static void main(String[] args) {
+       //launch(args);
+         new MainFrame().setVisible(true);
 
     }
+/*
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Laboratorul 6");
+        createBtn = new Button("Create");
+
+        StackPane layout = new StackPane();
+        layout.getChildren().add( createBtn);
+
+        Scene scene= new Scene(layout,300,250);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }*/
 }

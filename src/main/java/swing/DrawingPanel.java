@@ -1,8 +1,13 @@
-package Graphics;
+package swing;
 
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class DrawingPanel extends JPanel {
@@ -13,7 +18,9 @@ public class DrawingPanel extends JPanel {
     int cellWidth, cellHeight;
     int padX, padY;
     int stoneSize = 25;
-
+    boolean initiated= Boolean.FALSE;
+    List<Integer> sticksHorizontal=new ArrayList<>();
+    List<Integer> sticksVertical=new ArrayList<>();
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
 
@@ -48,8 +55,20 @@ public class DrawingPanel extends JPanel {
         this.boardWidth = (cols - 1) * cellWidth;
         this.boardHeight = (rows - 1) * cellHeight;
         setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+               drawStone(e.getX(),e.getY());
+            };
+        });
+
     }
 
+    void drawStone (int x, int y)
+    {
+       // int mouseColumn=x/
+    }
     void resize()
     {
 
@@ -67,17 +86,49 @@ public class DrawingPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, canvasWidth, canvasHeight);
         paintGrid(g);
+       //if (!initiated)
         paintSticks(g);
         paintStones(g);
-        repaint();
+    //    repaint();
+
     }
 
     private void paintStones(Graphics2D g) {
     }
 
     private void paintSticks(Graphics2D g) {
-    }
+        g.setColor(Color.BLACK);
+        g.setStroke(new BasicStroke(5));
+        //horizontal lines
+        initiated=true;
 
+        for (int row = 0; row < rows; row++) {
+            for (int clmn = 0; clmn < cols-1; clmn++) {
+                int x1 = padX+ clmn*cellWidth;
+                int y1 = padY + row * cellHeight;
+                int x2 = padX + (clmn+1)*cellWidth;
+                int y2 = y1;
+                if (Math.random() > 0.4) {
+                    g.drawLine(x1, y1, x2, y2);
+                    sticksHorizontal.add(x2);
+                }
+            }
+        }
+        //vertical lines TODO
+        for (int clmn = 0; clmn < cols; clmn++) {
+            for (int row = 0; row < rows-1; row++) {
+                int x1 = padX + clmn * cellWidth;
+                int y1 = padY+row*cellHeight;
+                int x2 = x1;
+                int y2 = padX + (row+1)*cellHeight;
+
+                if (Math.random() > 0.4) {
+                    g.drawLine(x1, y1, x2, y2);
+                    sticksHorizontal.add(x2);
+                }
+            }
+        }
+    }
     private void paintGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
         //horizontal lines

@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be2cec48-a8f4-40a9-aa64-8b55f55d2c4b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javafx_swt.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graphics/ConfigPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graphics/DrawingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Compulsory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graphics/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Compulsory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Compulsory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/ConfigPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/ControlPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/DrawingPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Graphics/MainFrame.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +36,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -33,20 +53,25 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/lib/javafx.web.jar" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.43882245" />
   </component>
   <component name="RunManager" selected="Application.Compulsory">
-    <configuration name="Compulsory" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Compulsory" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Compulsory" />
       <module name="PA_LAB6" />
       <method v="2">
@@ -60,6 +85,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Compulsory" />
+      <item itemvalue="Application.text" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Compulsory" />
@@ -83,6 +112,17 @@
       <workItem from="1648465703342" duration="1154000" />
       <workItem from="1648467565438" duration="19000" />
       <workItem from="1648468185070" duration="4222000" />
+      <workItem from="1648473459589" duration="667000" />
+      <workItem from="1648562318622" duration="209000" />
+      <workItem from="1648727362709" duration="1780000" />
+      <workItem from="1648729793869" duration="4043000" />
+      <workItem from="1648733893481" duration="7000" />
+      <workItem from="1648734267191" duration="989000" />
+      <workItem from="1648735270633" duration="2442000" />
+      <workItem from="1648893801705" duration="1185000" />
+      <workItem from="1648895014880" duration="10000" />
+      <workItem from="1648895199943" duration="431000" />
+      <workItem from="1648896414406" duration="1401000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-package Graphics;
+package swing;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
