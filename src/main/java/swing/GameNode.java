@@ -4,34 +4,34 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class GameNode implements Serializable {
-    private double coordX;
-    private double coordY;
-    private int player=0;
+    private int coordX;
+    private int coordY;
+    private int player = 0;
 
-    public GameNode(double coordX, double coordY, int player) {
+    public GameNode(int coordX, int coordY, int player) {
         this.coordX = coordX;
         this.coordY = coordY;
         this.player = player;
     }
 
-    public GameNode(double coordX, double coordY) {
+    public GameNode(int coordX, int coordY) {
         this.coordX = coordX;
         this.coordY = coordY;
     }
 
-    public double getCoordX() {
+    public int getCoordX() {
         return coordX;
     }
 
-    public void setCoordX(double coordX) {
+    public void setCoordX(int coordX) {
         this.coordX = coordX;
     }
 
-    public double getCoordY() {
+    public int getCoordY() {
         return coordY;
     }
 
-    public void setCoordY(double coordY) {
+    public void setCoordY(int coordY) {
         this.coordY = coordY;
     }
 

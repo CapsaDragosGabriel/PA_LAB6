@@ -1,27 +1,33 @@
 package swing;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+
 import static java.lang.Thread.sleep;
 
 public class DrawingPanel extends JPanel {
-    public static final int STONE_SIZE=25;
+    public static final int STONE_SIZE = 25;
     private final MainFrame frame;
     int rows, cols;
     int canvasWidth = 600, canvasHeight = 600;
     int boardWidth, boardHeight;
     int cellWidth, cellHeight;
     int padX, padY;
-    
-    boolean initiated= Boolean.FALSE;
-    List<Integer> sticksHorizontal=new ArrayList<>();
-    List<Integer> sticksVertical=new ArrayList<>();
+    public int counter = 0;
+    boolean initiated = Boolean.FALSE;
+    List<Integer> sticksHorizontal = new ArrayList<>();
+    List<Integer> sticksVertical = new ArrayList<>();
+
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
 
@@ -46,41 +52,9 @@ public class DrawingPanel extends JPanel {
     }
 
     final void init(int rows, int cols) {
-
+        initiated = false;
         this.rows = rows;
         this.cols = cols;
-        this.padX =STONE_SIZE + 10;
-        this.padY = STONE_SIZE + 10;
-        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
-        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
-        this.boardWidth = (cols - 1) * cellWidth;
-        this.boardHeight = (rows - 1) * cellHeight;
-        setPreferredSize(new Dimension(canvasWidth, canvasHeight));
-
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-               drawStone(e.getX(),e.getY());
-            };
-        });
-
-    }
-
-    void drawStone (int x, int y)
-    {
-        GameNode node = frame.gameGraph.getGameNodeAtCoords(x,y, frame.player);
-        if (node==null) return;
-        Graphics graphics=this.getGraphics();
-        Graphics2D g = (Graphics2D) graphics;
-        if(frame.player==1)g.setColor(Color.RED);
-        else g.setColor(Color.BLUE);
-        g.fillOval((int)node.getCoordX() - STONE_SIZE / 2, (int)node.getCoordY() - STONE_SIZE / 2, STONE_SIZE, STONE_SIZE);
-        frame.swapPlayer();
-
-    }
-    void resize()
-    {
-
         this.padX = STONE_SIZE + 10;
         this.padY = STONE_SIZE + 10;
         this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
@@ -88,67 +62,136 @@ public class DrawingPanel extends JPanel {
         this.boardWidth = (cols - 1) * cellWidth;
         this.boardHeight = (rows - 1) * cellHeight;
         setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+        frame.setResizable(false);
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                drawStone(e.getX(), e.getY());
+            }
+
+            ;
+        });
+
     }
+
+    void saveGame() {
+        BufferedImage im = new BufferedImage(frame.canvas.getWidth(), frame.canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        this.paint(im.getGraphics());
+        try {
+            File location = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\shot.png");
+            ImageIO.write(im, "PNG", location);
+        } catch (IOException e) {
+            System.out.println("Could not write image");
+            e.printStackTrace();
+        }
+        System.out.println("Saved image at ");
+        frame.saveGame=false;
+    }
+
+    void drawStone(int x, int y) {
+        GameNode node = frame.gameGraph.getGameNodeAtCoords(x, y, frame.player);
+        if (node == null) return;
+        Graphics graphics = this.getGraphics();
+        Graphics2D g = (Graphics2D) graphics;
+        if (frame.player == 1) g.setColor(Color.RED);
+        else g.setColor(Color.BLUE);
+        g.fillOval((int) node.getCoordX() - STONE_SIZE / 2, (int) node.getCoordY() - STONE_SIZE / 2, STONE_SIZE, STONE_SIZE);
+        frame.swapPlayer();
+
+    }
+
+    void resize() {
+
+        /*this.padX = STONE_SIZE + 10;
+        this.padY = STONE_SIZE + 10;
+        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
+        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
+        this.boardWidth = (cols - 1) * cellWidth;
+        this.boardHeight = (rows - 1) * cellHeight;
+        setPreferredSize(new Dimension(canvasWidth, canvasHeight));*/
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, canvasWidth, canvasHeight);
         paintGrid(g);
-       //if (!initiated)
+        if (!frame.saveGame) generateSticks(g);
         paintSticks(g);
         paintStones(g);
-       // repaint();
+        // repaint();
 
     }
 
     private void paintStones(Graphics2D g) {
+        for (GameNode node : frame.gameGraph.getGameNodeSet()) {
+            g.setColor(Color.BLACK);
+            if (node.getPlayer() == 1) g.setColor(Color.RED);
+            else if (node.getPlayer() == 2) g.setColor(Color.BLUE);
+            g.fillOval((int) node.getCoordX() - STONE_SIZE / 2, (int) node.getCoordY() - STONE_SIZE / 2, STONE_SIZE, STONE_SIZE);
 
+        }
     }
 
     private void paintSticks(Graphics2D g) {
+        for (GameEdge edge : frame.gameGraph.getGameEdgeSet()) {
+            int x1 = edge.getGameNode1().getCoordX();
+            int y1 = edge.getGameNode1().getCoordY();
+            int x2 = edge.getGameNode2().getCoordX();
+            int y2 = edge.getGameNode2().getCoordY();
+            g.setColor(Color.BLACK);
+            g.setStroke(new BasicStroke(5));
+            g.drawLine(x1, y1, x2, y2);
+        }
+    }
+
+    private void generateSticks(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(5));
         //horizontal lines
-        initiated=true;
+        frame.saveGame=true;
 
         for (int row = 0; row < rows; row++) {
-            for (int clmn = 0; clmn < cols-1; clmn++) {
-                int x1 = padX+ clmn*cellWidth;
+            for (int clmn = 0; clmn < cols - 1; clmn++) {
+                int x1 = padX + clmn * cellWidth;
                 int y1 = padY + row * cellHeight;
-                int x2 = padX + (clmn+1)*cellWidth;
+                int x2 = padX + (clmn + 1) * cellWidth;
                 int y2 = y1;
                 if (Math.random() > 0.4) {
                     g.drawLine(x1, y1, x2, y2);
-                    GameNode gameNode1=new GameNode(x1,y1);
-                    GameNode gameNode2=new GameNode(x2,y2);
-                    frame.gameGraph.addEdge(gameNode1,gameNode2);
+                    GameNode gameNode1 = new GameNode(x1, y1);
+                    GameNode gameNode2 = new GameNode(x2, y2);
+                    frame.gameGraph.addEdge(gameNode1, gameNode2);
                     frame.gameGraph.addVertex(gameNode1);
                     frame.gameGraph.addVertex(gameNode2);
-                   // sticksHorizontal.add(x2);
+                    // sticksHorizontal.add(x2);
                 }
             }
+
         }
         //vertical lines TODO
         for (int clmn = 0; clmn < cols; clmn++) {
-            for (int row = 0; row < rows-1; row++) {
+            for (int row = 0; row < rows - 1; row++) {
                 int x1 = padX + clmn * cellWidth;
-                int y1 = padY+row*cellHeight;
+                int y1 = padY + row * cellHeight;
                 int x2 = x1;
-                int y2 = padX + (row+1)*cellHeight;
+                int y2 = padX + (row + 1) * cellHeight;
 
                 if (Math.random() > 0.4) {
                     g.drawLine(x1, y1, x2, y2);
-                    GameNode gameNode1=new GameNode(x1,y1);
-                    GameNode gameNode2=new GameNode(x2,y2);
-                    frame.gameGraph.addEdge(gameNode1,gameNode2);
+                    GameNode gameNode1 = new GameNode(x1, y1);
+                    GameNode gameNode2 = new GameNode(x2, y2);
+                    frame.gameGraph.addEdge(gameNode1, gameNode2);
                     frame.gameGraph.addVertex(gameNode1);
                     frame.gameGraph.addVertex(gameNode2);
-                  //  sticksHorizontal.add(x2);
+                    //  sticksHorizontal.add(x2);
                 }
             }
         }
+        initiated = true;
     }
+
     private void paintGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
         //horizontal lines
@@ -161,7 +204,7 @@ public class DrawingPanel extends JPanel {
         }
         //vertical lines TODO
         for (int clmn = 0; clmn < cols; clmn++) {
-            int x1 = padX + clmn*cellWidth;
+            int x1 = padX + clmn * cellWidth;
             int y1 = padY;
             int x2 = x1;
             int y2 = padX + boardHeight;

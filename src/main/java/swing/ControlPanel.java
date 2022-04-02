@@ -1,8 +1,12 @@
 package swing;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ControlPanel extends JPanel {
     final MainFrame frame;
@@ -14,26 +18,27 @@ public class ControlPanel extends JPanel {
         this.frame = frame;
         init();
     }
+
     private void init() {
         //change the default layout manager (just for fun)
         setLayout(new GridLayout(1, 4));
         //add all buttons ...TODO
-        this.add(saveBtn,new GridLayout(1,1) );
-        this.add(loadBtn,new GridLayout(1,3));
-        this.add(exitBtn,new GridLayout(1,2));
+        this.add(saveBtn, new GridLayout(1, 1));
+        this.add(loadBtn, new GridLayout(1, 3));
+        this.add(exitBtn, new GridLayout(1, 2));
 
         //configure listeners for all buttons
         exitBtn.addActionListener(this::exitGame);
-       saveBtn.addActionListener(this::saveGame);
+        saveBtn.addActionListener(this::saveGame);
         loadBtn.addActionListener(this::loadGame);
- //...TODO
+        //...TODO
     }
 
     private void loadGame(ActionEvent actionEvent) {
     }
 
     private void saveGame(ActionEvent actionEvent) {
-
+        frame.canvas.saveGame();
     }
 
     private void exitGame(ActionEvent e) {

@@ -14,11 +14,11 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Compulsory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Compulsory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/ControlPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/DrawingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/DrawingPanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swing/GameGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/GameGraph.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/MainFrame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +123,8 @@
       <workItem from="1648895014880" duration="10000" />
       <workItem from="1648895199943" duration="431000" />
       <workItem from="1648896414406" duration="13149000" />
-      <workItem from="1648914857230" duration="7356000" />
+      <workItem from="1648914857230" duration="11406000" />
+      <workItem from="1648926551073" duration="2919000" />
     </task>
     <servers />
   </component>

@@ -5,15 +5,16 @@ import java.util.Objects;
 
 public class GameEdge implements Serializable {
     public boolean contain;
-    private  GameNode gameNode1;
-    private  GameNode gameNode2;
-    public boolean contains (GameNode node)
-    {
+    private GameNode gameNode1;
+    private GameNode gameNode2;
+
+    public boolean contains(GameNode node) {
         if (gameNode1.equals(node)) return true;
         if (gameNode2.equals(node)) return true;
         return false;
 
     }
+
     public GameEdge(GameNode gameNode1, GameNode gameNode2) {
         this.gameNode1 = gameNode1;
         this.gameNode2 = gameNode2;

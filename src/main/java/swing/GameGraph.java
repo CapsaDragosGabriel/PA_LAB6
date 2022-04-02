@@ -10,45 +10,82 @@ import lombok.Data;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphIterables;
 import org.jgrapht.GraphType;
-@Data
-public class GameGraph<V extends GameNode, E extends GameEdge> implements Serializable,Graph<V,E> {
-    private  int nrRows;
-    private int noClmns;
-    private Set<GameNode> gameNodeSet= new HashSet<>();
-    private Set<GameEdge> gameEdgeSet= new HashSet<>();
-    private GameNode prevGameNode=null;
 
-    public void depopulateNodes()
+@Data
+public class GameGraph<V extends GameNode, E extends GameEdge> implements Serializable, Graph<V, E> {
+    private int rows = 10;
+    private int cols = 12;
+    private Set<GameNode> gameNodeSet = new HashSet<>();
+    private Set<GameEdge> gameEdgeSet = new HashSet<>();
+    private GameNode prevGameNode = null;
+
+    /*public void generateGraph()
     {
+        for (int row = 0; row < rows; row++) {
+            for (int clmn = 0; clmn < cols-1; clmn++) {
+                int x1 = padX+ clmn*cellWidth;
+                int y1 = padY + row * cellHeight;
+                int x2 = padX + (clmn+1)*cellWidth;
+                int y2 = y1;
+                if (Math.random() > 0.4) {
+                    g.drawLine(x1, y1, x2, y2);
+                    GameNode gameNode1=new GameNode(x1,y1);
+                    GameNode gameNode2=new GameNode(x2,y2);
+                    this.addEdge(gameNode1,gameNode2);
+                    this.addVertex(gameNode1);
+                    this.addVertex(gameNode2);
+                    // sticksHorizontal.add(x2);
+                }
+            }
+        }
+        //vertical lines TODO
+        for (int clmn = 0; clmn < cols; clmn++) {
+            for (int row = 0; row < rows-1; row++) {
+                int x1 = padX + clmn * cellWidth;
+                int y1 = padY+row*cellHeight;
+                int x2 = x1;
+                int y2 = padX + (row+1)*cellHeight;
+
+                if (Math.random() > 0.4) {
+                    g.drawLine(x1, y1, x2, y2);
+                    GameNode gameNode1=new GameNode(x1,y1);
+                    GameNode gameNode2=new GameNode(x2,y2);
+                    frame.gameGraph.addEdge(gameNode1,gameNode2);
+                    frame.gameGraph.addVertex(gameNode1);
+                    frame.gameGraph.addVertex(gameNode2);
+                    //  sticksHorizontal.add(x2);
+                }
+            }
+        }
+    }
+   */
+    public void depopulateNodes() {
         for (GameNode node : gameNodeSet)
             gameNodeSet.remove(node);
     }
 
-    public boolean isValidNode(GameNode node)
-    {
-        if (prevGameNode==null)
+    public boolean isValidNode(GameNode node) {
+        if (prevGameNode == null)
             return true;
 
-        if (node.getPlayer()!=0) {
+        if (node.getPlayer() != 0) {
             System.out.println("node used");
             return false;
         }
 
-        for (GameEdge edge : this.gameEdgeSet)
-        {
-            if (edge.contains(prevGameNode)&& edge.contains(node))
+        for (GameEdge edge : this.gameEdgeSet) {
+            if (edge.contains(prevGameNode) && edge.contains(node))
                 return true;
         }
         return false;
     }
-    public GameNode getGameNodeAtCoords(int x, int y,int player) {
-        for (GameNode node: gameNodeSet)
-        {
-            if (Math.sqrt((x-node.getCoordX())* (x-node.getCoordX()) + (y-node.getCoordY()) * (y-node.getCoordY()))<=DrawingPanel.STONE_SIZE)
-            {
+
+    public GameNode getGameNodeAtCoords(int x, int y, int player) {
+        for (GameNode node : gameNodeSet) {
+            if (Math.sqrt((x - node.getCoordX()) * (x - node.getCoordX()) + (y - node.getCoordY()) * (y - node.getCoordY())) <= DrawingPanel.STONE_SIZE) {
                 if (isValidNode(node)) {
                     node.setPlayer(player);
-                    prevGameNode=node;
+                    prevGameNode = node;
 
                     return node;
 
@@ -62,23 +99,21 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public Set<E> getAllEdges(V v, V v1) {
-        Set<E> edgesSet=new HashSet<>();
-        for (GameEdge edge : gameEdgeSet)
-        {
-            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1)||
+        Set<E> edgesSet = new HashSet<>();
+        for (GameEdge edge : gameEdgeSet) {
+            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1) ||
                     edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
-                edgesSet.add((E)edge);
+                edgesSet.add((E) edge);
         }
         return edgesSet;
     }
 
     @Override
     public E getEdge(V v, V v1) {
-        for (GameEdge edge : gameEdgeSet)
-        {
-            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1)||
+        for (GameEdge edge : gameEdgeSet) {
+            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1) ||
                     edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
-                return((E)edge);
+                return ((E) edge);
         }
         return null;
     }
@@ -95,37 +130,36 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public E addEdge(V v, V v1) {
-        GameEdge newEdge=new GameEdge(v,v1);
+        GameEdge newEdge = new GameEdge(v, v1);
         this.gameEdgeSet.add(newEdge);
-        return ((E)newEdge);
+        return ((E) newEdge);
     }
 
     @Override
     public boolean addEdge(V v, V v1, E e) {
-        GameEdge newEdge=new GameEdge(e.getGameNode1(),e.getGameNode2());
+        GameEdge newEdge = new GameEdge(e.getGameNode1(), e.getGameNode2());
         this.gameEdgeSet.add(newEdge);
         return true;
     }
 
     @Override
     public V addVertex() {
-        GameNode newNode=new GameNode(0,0);
-       this.gameNodeSet.add(newNode);
-        return ((V)newNode);
+        GameNode newNode = new GameNode(0, 0);
+        this.gameNodeSet.add(newNode);
+        return ((V) newNode);
     }
 
     @Override
     public boolean addVertex(V v) {
-        GameNode newNode=new GameNode(v.getCoordX(),v.getCoordY());
+        GameNode newNode = new GameNode(v.getCoordX(), v.getCoordY());
         this.gameNodeSet.add(newNode);
         return true;
     }
 
     @Override
     public boolean containsEdge(V v, V v1) {
-        for (GameEdge edge : this.gameEdgeSet)
-        {
-            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1)||
+        for (GameEdge edge : this.gameEdgeSet) {
+            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1) ||
                     edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
                 return true;
         }
@@ -134,8 +168,7 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public boolean containsEdge(E e) {
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode1().equals(e))
                 return true;
         }
@@ -145,21 +178,20 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
     @Override
     public boolean containsVertex(V v) {
         for (GameNode node : this.gameNodeSet)
-        if (v.equals(node)) return true;
+            if (v.equals(node)) return true;
         return false;
 
     }
 
     @Override
     public Set<E> edgeSet() {
-        return ((Set<E>)this.gameEdgeSet);
+        return ((Set<E>) this.gameEdgeSet);
     }
 
     @Override
     public int degreeOf(V v) {
-        int degree=0;
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        int degree = 0;
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode1().equals(v) || edge.getGameNode2().equals(v))
                 degree++;
         }
@@ -168,11 +200,10 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public Set<E> edgesOf(V v) {
-        Set<E> newEdgeSet=new HashSet<>();
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        Set<E> newEdgeSet = new HashSet<>();
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode1().equals(v) || edge.getGameNode2().equals(v))
-                newEdgeSet.add((E)edge);
+                newEdgeSet.add((E) edge);
         }
         return newEdgeSet;
     }
@@ -184,22 +215,20 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public Set<E> incomingEdgesOf(V v) {
-        Set<E> newEdgeSet=new HashSet<>();
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        Set<E> newEdgeSet = new HashSet<>();
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode1().equals(v))
-                newEdgeSet.add((E)edge);
+                newEdgeSet.add((E) edge);
         }
         return newEdgeSet;
     }
 
     @Override
     public int outDegreeOf(V v) {
-        int degree=0;
+        int degree = 0;
 
-        for (GameEdge edge : this.gameEdgeSet)
-        {
-            if ( edge.getGameNode2().equals(v))
+        for (GameEdge edge : this.gameEdgeSet) {
+            if (edge.getGameNode2().equals(v))
                 degree++;
         }
         return degree;
@@ -207,11 +236,10 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public Set<E> outgoingEdgesOf(V v) {
-        Set<E> newEdgeSet=new HashSet<>();
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        Set<E> newEdgeSet = new HashSet<>();
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode2().equals(v))
-                newEdgeSet.add((E)edge);
+                newEdgeSet.add((E) edge);
         }
         return newEdgeSet;
     }
@@ -224,12 +252,11 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public Set<E> removeAllEdges(V v, V v1) {
-        Set<E> removeSet=new HashSet<>();
-        for (GameEdge edge : this.gameEdgeSet)
-        {
+        Set<E> removeSet = new HashSet<>();
+        for (GameEdge edge : this.gameEdgeSet) {
             if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1)
-            || edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
-                removeSet.add((E)edge);
+                    || edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
+                removeSet.add((E) edge);
         }
         return removeSet;
     }
@@ -242,25 +269,22 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public E removeEdge(V v, V v1) {
-        GameEdge toRemove=new GameEdge();
-        for (GameEdge edge : gameEdgeSet)
-        {
-            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1)||
+        GameEdge toRemove = new GameEdge();
+        for (GameEdge edge : gameEdgeSet) {
+            if (edge.getGameNode1().equals(v) && edge.getGameNode2().equals(v1) ||
                     edge.getGameNode1().equals(v1) && edge.getGameNode2().equals(v))
-                        toRemove=edge;
+                toRemove = edge;
         }
         this.gameEdgeSet.remove(toRemove);
-        return ((E)toRemove);
+        return ((E) toRemove);
     }
 
     @Override
     public boolean removeEdge(E e) {
-        for (GameEdge edge : gameEdgeSet)
-        {
-            if (edge.equals(e))
-            {
-            this.gameEdgeSet.remove(edge);
-            return true;
+        for (GameEdge edge : gameEdgeSet) {
+            if (edge.equals(e)) {
+                this.gameEdgeSet.remove(edge);
+                return true;
             }
         }
         return false;
@@ -279,12 +303,12 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public V getEdgeSource(E e) {
-        return (V)e.getGameNode1();
+        return (V) e.getGameNode1();
     }
 
     @Override
     public V getEdgeTarget(E e) {
-        return (V)e.getGameNode2();
+        return (V) e.getGameNode2();
     }
 
     @Override
@@ -315,8 +339,8 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
     @Override
     public String toString() {
         return "GameGraph{" +
-                "nrRows=" + nrRows +
-                ", noClmns=" + noClmns +
+                "nrRows=" + rows +
+                ", noClmns=" + cols +
                 ", gameNodeSet=" + gameNodeSet +
                 ", gameEdgeSet=" + gameEdgeSet +
                 ", anteriorGameNode=" + prevGameNode +

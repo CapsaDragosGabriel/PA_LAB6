@@ -5,12 +5,13 @@ import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 
 public class ConfigPanel extends JPanel {
-   final  MainFrame frame;
+    final MainFrame frame;
     JLabel label;
     JSpinner spinner1;
     JSpinner spinner2;
-    JButton createBtn=new JButton("Create");
-    int rows=10,cols=12;
+    JButton createBtn = new JButton("Create");
+    int rows, cols;
+
     public MainFrame getFrame() {
         return frame;
     }
@@ -33,16 +34,19 @@ public class ConfigPanel extends JPanel {
 
     public ConfigPanel(MainFrame frame) {
         this.frame = frame;
+        rows = frame.gameGraph.getRows();
+        cols = frame.gameGraph.getCols();
         init();
     }
+
     private void init() {
         //create the label and the spinner1
         label = new JLabel("Grid size (RxC):");
         spinner1 = new JSpinner(new SpinnerNumberModel(rows, 2, 100, 1));
-        spinner2= new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
+        spinner2 = new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
         //create spinners for rows and cols, and the button
 
-        
+
         add(label); //JPanel uses FlowLayout by default
         add(spinner1);
         add(spinner2);
@@ -53,12 +57,12 @@ public class ConfigPanel extends JPanel {
     }
 
     private void setRows(ChangeEvent changeEvent) {
-        rows=(Integer)(spinner1.getValue());
+        rows = (Integer) (spinner1.getValue());
         frame.setRows(rows);
     }
 
     private void setCols(ChangeEvent changeEvent) {
-        cols=(Integer)(spinner2.getValue());
+        cols = (Integer) (spinner2.getValue());
         frame.setCols(cols);
     }
 
@@ -71,7 +75,8 @@ public class ConfigPanel extends JPanel {
     }
 
     private void createGame(ActionEvent actionEvent) {
-
+        frame.saveGame=false;
+        frame.gameGraph = new GameGraph<>();
         frame.gameGraph.removeAllEdges(frame.gameGraph.getGameEdgeSet());
         frame.gameGraph.removeAllVertices(frame.gameGraph.getGameNodeSet());
         frame.setCols(cols);
@@ -82,9 +87,10 @@ public class ConfigPanel extends JPanel {
         frame.setPlayer(1);
         frame.gameGraph.setPrevGameNode(null);
         frame.gameGraph.depopulateNodes();
-       frame.canvas.paintComponent(frame.canvas.getGraphics());
+        frame.canvas.counter++;
+        frame.canvas.paintComponent(frame.canvas.getGraphics());
 
 
     }
-    
+
 }

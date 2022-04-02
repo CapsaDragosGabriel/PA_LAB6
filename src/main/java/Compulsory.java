@@ -8,12 +8,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import swing.MainFrame;
 
-class Compulsory{
+class Compulsory {
 
     Button createBtn;
 
     public static void main(String[] args) {
-       //launch(args);
+        //launch(args);
         new MainFrame().setVisible(true);
 
 
