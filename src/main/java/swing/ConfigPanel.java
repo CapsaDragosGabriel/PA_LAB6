@@ -42,8 +42,8 @@ public class ConfigPanel extends JPanel {
     private void init() {
         //create the label and the spinner1
         label = new JLabel("Grid size (RxC):");
-        spinner1 = new JSpinner(new SpinnerNumberModel(rows, 2, 100, 1));
-        spinner2 = new JSpinner(new SpinnerNumberModel(cols, 2, 100, 1));
+        spinner1 = new JSpinner(new SpinnerNumberModel(frame.gameGraph.getRows()==0?10:frame.gameGraph.getRows(), 2, 100, 1));
+        spinner2 = new JSpinner(new SpinnerNumberModel(frame.gameGraph.getRows()==0?10:frame.gameGraph.getCols(), 2, 100, 1));
         //create spinners for rows and cols, and the button
 
 
@@ -56,14 +56,26 @@ public class ConfigPanel extends JPanel {
         createBtn.addActionListener(this::createGame);
     }
 
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
     private void setRows(ChangeEvent changeEvent) {
         rows = (Integer) (spinner1.getValue());
+
         frame.setRows(rows);
+        frame.gameGraph.setRows(frame.rows);
     }
 
     private void setCols(ChangeEvent changeEvent) {
         cols = (Integer) (spinner2.getValue());
+
         frame.setCols(cols);
+        frame.gameGraph.setCols(frame.cols);
     }
 
     public int getRows() {
@@ -87,7 +99,9 @@ public class ConfigPanel extends JPanel {
         frame.setPlayer(1);
         frame.gameGraph.setPrevGameNode(null);
         frame.gameGraph.depopulateNodes();
-        frame.canvas.counter++;
+        frame.gameGraph.setRows(rows);
+        frame.gameGraph.setCols(cols);
+      //  frame.canvas.counter++;
         frame.canvas.paintComponent(frame.canvas.getGraphics());
         frame.canvas.winningStrategy();
 

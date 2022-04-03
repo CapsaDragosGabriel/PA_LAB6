@@ -17,8 +17,8 @@ import org.jgrapht.graph.AsUndirectedGraph;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GameGraph<V extends GameNode, E extends GameEdge> implements Serializable, Graph<V, E> {
-    private int rows = 10;
-    private int cols = 12;
+    private int rows=10 ;
+    private int cols=12;
     private Set<GameNode> gameNodeSet = new HashSet<>();
     private Set<GameEdge> gameEdgeSet = new HashSet<>();
     private GameNode prevGameNode = null;

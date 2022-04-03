@@ -42,10 +42,10 @@ public class DrawingPanel extends JPanel {
 
         this.padX = STONE_SIZE + 10;
         this.padY = STONE_SIZE + 10;
-        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
-        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
-        this.boardWidth = (cols - 1) * cellWidth;
-        this.boardHeight = (rows - 1) * cellHeight;
+        this.cellWidth = (canvasWidth - 2 * padX) / (frame.gameGraph.getCols() - 1);
+        this.cellHeight = (canvasHeight - 2 * padY) / (frame.gameGraph.getRows() - 1);
+        this.boardWidth = (frame.gameGraph.getCols() - 1) * cellWidth;
+        this.boardHeight = (frame.gameGraph.getRows() - 1) * cellHeight;
         setPreferredSize(new Dimension(canvasWidth, canvasHeight));
     }
     /**
@@ -119,10 +119,8 @@ public class DrawingPanel extends JPanel {
         int oldPlayer = frame.gameGraph.getPrevGameNode()!=null? frame.gameGraph.getPrevGameNode().getPlayer(): 2;
         int nextPlayer = (oldPlayer == 0) ? 0 : (oldPlayer == 1 ? 2 : 1);
         frame.player = nextPlayer;
-        frame.canvas.repaint();
-        frame.canvas.paintGrid((Graphics2D) frame.canvas.getGraphics());
-        //winningStrategy();
-        //  frame.saveGame=false;
+        frame.canvas.resize();
+        frame.canvas.paintComponent(frame.canvas.getGraphics());
     }
 
     void saveGame() {
@@ -169,11 +167,10 @@ public class DrawingPanel extends JPanel {
         Graphics2D g = (Graphics2D) graphics;
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, canvasWidth, canvasHeight);
-        paintGrid(g);
+        //paintGrid(g);
         if (!frame.saveGame) generateSticks(g);
         paintSticks(g);
         paintStones(g);
-        // repaint();
 
     }
 
