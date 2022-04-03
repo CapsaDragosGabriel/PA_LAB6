@@ -28,16 +28,15 @@ public class MainFrame extends JFrame {
         controlPanel = new ControlPanel(this);
         configPanel = new ConfigPanel(this);
         canvas = new DrawingPanel(this);
-        //...TODO
-        //arrange the components in the container (frame)
-        //JFrame uses a BorderLayout by default
 
         this.add(configPanel, BorderLayout.NORTH);
 
         this.add(controlPanel, BorderLayout.SOUTH);
         this.add(canvas, BorderLayout.CENTER);
 
-
+/**
+ * resetez tot
+ */
         gameGraph.removeAllEdges(gameGraph.getGameEdgeSet());
         gameGraph.removeAllVertices(gameGraph.getGameNodeSet());
         setCols(cols);
@@ -48,13 +47,16 @@ public class MainFrame extends JFrame {
         setPlayer(1);
         gameGraph.setPrevGameNode(null);
         gameGraph.depopulateNodes();
-        //canvas.repaint();
 
 
         pack();
     }
 
     public int gameFinished() {
+        /**
+         * un check care se face la fiecare mutare care
+         * va spune ce jucator a castigat
+         */
         for (GameNode node : gameGraph.getGameNodeSet()) {
             if (gameGraph.isValidNode(node))
                 return 0;

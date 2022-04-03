@@ -22,7 +22,6 @@ public class ControlPanel extends JPanel {
     private void init() {
         //change the default layout manager (just for fun)
         setLayout(new GridLayout(1, 4));
-        //add all buttons ...TODO
         this.add(saveBtn, new GridLayout(1, 1));
         this.add(loadBtn, new GridLayout(1, 3));
         this.add(exitBtn, new GridLayout(1, 2));
@@ -31,7 +30,6 @@ public class ControlPanel extends JPanel {
         exitBtn.addActionListener(this::exitGame);
         saveBtn.addActionListener(this::saveGame);
         loadBtn.addActionListener(this::loadGame);
-        //...TODO
     }
 
     private void loadGame(ActionEvent actionEvent) {

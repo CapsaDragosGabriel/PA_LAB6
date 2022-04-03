@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="be2cec48-a8f4-40a9-aa64-8b55f55d2c4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph.JSON" beforeDir="false" afterPath="$PROJECT_DIR$/graph.JSON" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shot.png" beforeDir="false" afterPath="$PROJECT_DIR$/shot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +119,8 @@
       <workItem from="1648968982990" duration="291000" />
       <workItem from="1648991966714" duration="2623000" />
       <workItem from="1649009475032" duration="5317000" />
-      <workItem from="1649015385930" duration="2728000" />
+      <workItem from="1649015385930" duration="3037000" />
+      <workItem from="1649021517292" duration="391000" />
     </task>
     <servers />
   </component>

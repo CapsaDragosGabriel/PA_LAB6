@@ -29,8 +29,6 @@ public class DrawingPanel extends JPanel {
     int padX, padY;
     public int counter = 0;
     boolean initiated = Boolean.FALSE;
-    List<Integer> sticksHorizontal = new ArrayList<>();
-    List<Integer> sticksVertical = new ArrayList<>();
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
@@ -149,6 +147,9 @@ public class DrawingPanel extends JPanel {
         frame.saveGame = false;
     }
 
+    /**
+     * pentru desenarea unei pietre atunci cand jucatorii dau click
+     */
     void drawStone(int x, int y) {
         GameNode node = frame.gameGraph.getGameNodeAtCoords(x, y, frame.player);
         if (node == null) return;
@@ -174,6 +175,9 @@ public class DrawingPanel extends JPanel {
 
     }
 
+    /**
+     * genereaza pietrele puse
+     */
     private void paintStones(Graphics2D g) {
         for (GameNode node : frame.gameGraph.getGameNodeSet()) {
             g.setColor(Color.BLACK);
@@ -184,6 +188,9 @@ public class DrawingPanel extends JPanel {
         }
     }
 
+    /**
+     * deseneaza muchiile din graf
+     */
     private void paintSticks(Graphics2D g) {
         for (GameEdge edge : frame.gameGraph.getGameEdgeSet()) {
             int x1 = edge.getGameNode1().getCoordX();
@@ -196,6 +203,9 @@ public class DrawingPanel extends JPanel {
         }
     }
 
+    /**
+     * genereaza muchii pentru graf
+     */
     private void generateSticks(Graphics2D g) {
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(5));
@@ -215,12 +225,10 @@ public class DrawingPanel extends JPanel {
                     frame.gameGraph.addEdge(gameNode1, gameNode2);
                     frame.gameGraph.addVertex(gameNode1);
                     frame.gameGraph.addVertex(gameNode2);
-                    // sticksHorizontal.add(x2);
                 }
             }
 
         }
-        //vertical lines TODO
         for (int clmn = 0; clmn < cols; clmn++) {
             for (int row = 0; row < rows - 1; row++) {
                 int x1 = padX + clmn * cellWidth;
@@ -235,7 +243,6 @@ public class DrawingPanel extends JPanel {
                     frame.gameGraph.addEdge(gameNode1, gameNode2);
                     frame.gameGraph.addVertex(gameNode1);
                     frame.gameGraph.addVertex(gameNode2);
-                    //  sticksHorizontal.add(x2);
                 }
             }
         }

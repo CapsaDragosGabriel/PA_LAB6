@@ -44,7 +44,6 @@ public class ConfigPanel extends JPanel {
         label = new JLabel("Grid size (RxC):");
         spinner1 = new JSpinner(new SpinnerNumberModel(frame.gameGraph.getRows()==0?10:frame.gameGraph.getRows(), 2, 100, 1));
         spinner2 = new JSpinner(new SpinnerNumberModel(frame.gameGraph.getRows()==0?10:frame.gameGraph.getCols(), 2, 100, 1));
-        //create spinners for rows and cols, and the button
 
 
         add(label); //JPanel uses FlowLayout by default
@@ -87,6 +86,9 @@ public class ConfigPanel extends JPanel {
     }
 
     private void createGame(ActionEvent actionEvent) {
+        /**
+         * sterg ce era inainte si pun noile setari
+         */
         frame.saveGame = false;
         frame.gameGraph = new GameGraph<>();
         frame.gameGraph.removeAllEdges(frame.gameGraph.getGameEdgeSet());
@@ -101,7 +103,6 @@ public class ConfigPanel extends JPanel {
         frame.gameGraph.depopulateNodes();
         frame.gameGraph.setRows(rows);
         frame.gameGraph.setCols(cols);
-      //  frame.canvas.counter++;
         frame.canvas.paintComponent(frame.canvas.getGraphics());
         frame.canvas.winningStrategy();
 
