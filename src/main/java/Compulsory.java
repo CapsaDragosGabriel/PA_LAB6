@@ -10,26 +10,8 @@ import org.jgrapht.alg.matching.DenseEdmondsMaximumCardinalityMatching;
 import swing.MainFrame;
 
 class Compulsory {
-
-    Button createBtn;
-
     public static void main(String[] args) {
-        //launch(args);
+
         new MainFrame().setVisible(true);
-
-
     }
-/*
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Laboratorul 6");
-        createBtn = new Button("Create");
-
-        StackPane layout = new StackPane();
-        layout.getChildren().add( createBtn);
-
-        Scene scene= new Scene(layout,300,250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }*/
 }

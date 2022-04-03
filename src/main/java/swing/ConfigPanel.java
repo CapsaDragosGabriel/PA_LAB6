@@ -75,7 +75,7 @@ public class ConfigPanel extends JPanel {
     }
 
     private void createGame(ActionEvent actionEvent) {
-        frame.saveGame=false;
+        frame.saveGame = false;
         frame.gameGraph = new GameGraph<>();
         frame.gameGraph.removeAllEdges(frame.gameGraph.getGameEdgeSet());
         frame.gameGraph.removeAllVertices(frame.gameGraph.getGameNodeSet());
@@ -89,7 +89,7 @@ public class ConfigPanel extends JPanel {
         frame.gameGraph.depopulateNodes();
         frame.canvas.counter++;
         frame.canvas.paintComponent(frame.canvas.getGraphics());
-
+        frame.canvas.winningStrategy();
 
     }
 

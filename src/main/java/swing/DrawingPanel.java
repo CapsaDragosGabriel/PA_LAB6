@@ -3,6 +3,7 @@ package swing;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jgrapht.alg.matching.DenseEdmondsMaximumCardinalityMatching;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -35,6 +36,27 @@ public class DrawingPanel extends JPanel {
         this.frame = frame;
 
         init(frame.configPanel.getRows(), frame.configPanel.getCols());
+
+    }
+    void resize() {
+
+        this.padX = STONE_SIZE + 10;
+        this.padY = STONE_SIZE + 10;
+        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
+        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
+        this.boardWidth = (cols - 1) * cellWidth;
+        this.boardHeight = (rows - 1) * cellHeight;
+        setPreferredSize(new Dimension(canvasWidth, canvasHeight));
+    }
+    /**
+     * Daca exista un maximum matching -> nu exista drum de augumentare -> ultimul nod
+     * va fi de culoarea celui de al doilea jucator-> primul jucator pierde
+     * In caz contrar, ultimul nod va avea culoarea primului jucator -> al doilea jucator pierde
+     */
+    public void winningStrategy() {
+        DenseEdmondsMaximumCardinalityMatching denseEdmondsMaximumCardinalityMatching = new DenseEdmondsMaximumCardinalityMatching(frame.gameGraph);
+        System.out.println(denseEdmondsMaximumCardinalityMatching.isMaximumMatching
+                (denseEdmondsMaximumCardinalityMatching.getMatching()));
 
     }
 
@@ -74,54 +96,59 @@ public class DrawingPanel extends JPanel {
 
             ;
         });
-
+      //  this.paintComponent(this.getGraphics());
     }
+
     public void loadGame() {
-        frame.saveGame=true;
-        GameGraph loadGraph=new GameGraph();
-        ObjectMapper mapper=new ObjectMapper();
-        InputStream inputStream= null;
+        frame.saveGame = true;
+        GameGraph loadGraph = new GameGraph();
+        ObjectMapper mapper = new ObjectMapper();
+        InputStream inputStream = null;
         try {
             inputStream = new FileInputStream(new File("E:\\AN2\\ProiectePA\\PA_LAB6\\graph.JSON"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            loadGraph=mapper.readValue(inputStream,GameGraph.class);
+            loadGraph = mapper.readValue(inputStream, GameGraph.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        frame.gameGraph=loadGraph;
+        frame.gameGraph = loadGraph;
         //frame.canvas.
+        int oldPlayer = frame.gameGraph.getPrevGameNode()!=null? frame.gameGraph.getPrevGameNode().getPlayer(): 2;
+        int nextPlayer = (oldPlayer == 0) ? 0 : (oldPlayer == 1 ? 2 : 1);
+        frame.player = nextPlayer;
         frame.canvas.repaint();
-      //  frame.saveGame=false;
+        frame.canvas.paintGrid((Graphics2D) frame.canvas.getGraphics());
+        //winningStrategy();
+        //  frame.saveGame=false;
     }
+
     void saveGame() {
         BufferedImage im = new BufferedImage(frame.canvas.getWidth(), frame.canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        GameGraph saveGraph= new GameGraph();
+        GameGraph saveGraph = new GameGraph();
         this.paint(im.getGraphics());
         try {
-            saveGraph=frame.gameGraph;
-            ObjectMapper mapper= new ObjectMapper();
+            saveGraph = frame.gameGraph;
+            ObjectMapper mapper = new ObjectMapper();
             File locationPNG = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\shot.png");
             File locationJSON = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\graph.JSON");
             ImageIO.write(im, "PNG", locationPNG);
-            mapper.writeValue(locationJSON,saveGraph);
-
-        }
-        catch (StreamWriteException e) {
+            mapper.writeValue(locationJSON, saveGraph);
+            System.out.println("Saved image at "+locationPNG);
+        } catch (StreamWriteException e) {
 
             System.out.println("Problem saving the file.");
         } catch (DatabindException e) {
 
             System.out.println("Binding failed.");
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Could not write image");
             e.printStackTrace();
         }
-        System.out.println("Saved image at ");
-        frame.saveGame=false;
+
+        frame.saveGame = false;
     }
 
     void drawStone(int x, int y) {
@@ -136,16 +163,6 @@ public class DrawingPanel extends JPanel {
 
     }
 
-    void resize() {
-
-        /*this.padX = STONE_SIZE + 10;
-        this.padY = STONE_SIZE + 10;
-        this.cellWidth = (canvasWidth - 2 * padX) / (cols - 1);
-        this.cellHeight = (canvasHeight - 2 * padY) / (rows - 1);
-        this.boardWidth = (cols - 1) * cellWidth;
-        this.boardHeight = (rows - 1) * cellHeight;
-        setPreferredSize(new Dimension(canvasWidth, canvasHeight));*/
-    }
 
     @Override
     protected void paintComponent(Graphics graphics) {
@@ -186,7 +203,7 @@ public class DrawingPanel extends JPanel {
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(5));
         //horizontal lines
-        frame.saveGame=true;
+        frame.saveGame = true;
 
         for (int row = 0; row < rows; row++) {
             for (int clmn = 0; clmn < cols - 1; clmn++) {
@@ -230,6 +247,7 @@ public class DrawingPanel extends JPanel {
 
     private void paintGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
+        g.setStroke(new BasicStroke(1));
         //horizontal lines
         for (int row = 0; row < rows; row++) {
             int x1 = padX;

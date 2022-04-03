@@ -14,7 +14,8 @@ public class MainFrame extends JFrame {
     GameGraph<GameNode, GameEdge> gameGraph = new GameGraph<>();
     int player = 1;
     int rows, cols;
-    boolean saveGame=false;
+    boolean saveGame = false;
+
     public MainFrame() {
         super("Laboratorul 6 CDG");
         init();
@@ -47,10 +48,9 @@ public class MainFrame extends JFrame {
         setPlayer(1);
         gameGraph.setPrevGameNode(null);
         gameGraph.depopulateNodes();
+        //canvas.repaint();
 
-        //...TODO
 
-        //invoke the layout manager
         pack();
     }
 

@@ -5,12 +5,14 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import org.jgrapht.Graph;
 import org.jgrapht.GraphIterables;
 import org.jgrapht.GraphType;
+import org.jgrapht.graph.AsUndirectedGraph;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,6 +22,7 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
     private Set<GameNode> gameNodeSet = new HashSet<>();
     private Set<GameEdge> gameEdgeSet = new HashSet<>();
     private GameNode prevGameNode = null;
+    int player = prevGameNode != null ? (prevGameNode.getPlayer() == 1 ? 2 : 1) : 0;
 
     /*public void generateGraph()
     {
@@ -71,7 +74,7 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
             return true;
 
         if (node.getPlayer() != 0) {
-       //     System.out.println("node used");
+            //     System.out.println("node used");
             return false;
         }
 
@@ -315,7 +318,99 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
 
     @Override
     public GraphType getType() {
-        return null;
+
+        GraphType undirected = new GraphType() {
+            @Override
+            public boolean isDirected() {
+                return false;
+            }
+
+            @Override
+            public boolean isUndirected() {
+                return true;
+            }
+
+            @Override
+            public boolean isMixed() {
+                return false;
+            }
+
+            @Override
+            public boolean isAllowingMultipleEdges() {
+                return false;
+            }
+
+            @Override
+            public boolean isAllowingSelfLoops() {
+                return false;
+            }
+
+            @Override
+            public boolean isAllowingCycles() {
+                return true;
+            }
+
+            @Override
+            public boolean isWeighted() {
+                return false;
+            }
+
+            @Override
+            public boolean isSimple() {
+                return false;
+            }
+
+            @Override
+            public boolean isPseudograph() {
+                return false;
+            }
+
+            @Override
+            public boolean isMultigraph() {
+                return false;
+            }
+
+            @Override
+            public boolean isModifiable() {
+                return false;
+            }
+
+            @Override
+            public GraphType asDirected() {
+                return null;
+            }
+
+            @Override
+            public GraphType asUndirected() {
+                return null;
+            }
+
+            @Override
+            public GraphType asMixed() {
+                return null;
+            }
+
+            @Override
+            public GraphType asUnweighted() {
+                return null;
+            }
+
+            @Override
+            public GraphType asWeighted() {
+                return null;
+            }
+
+            @Override
+            public GraphType asModifiable() {
+                return null;
+            }
+
+            @Override
+            public GraphType asUnmodifiable() {
+                return null;
+            }
+        };
+        return undirected;
     }
 
     @Override
