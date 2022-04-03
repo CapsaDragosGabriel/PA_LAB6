@@ -6,20 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="be2cec48-a8f4-40a9-aa64-8b55f55d2c4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shot.png" beforeDir="false" afterPath="$PROJECT_DIR$/shot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Compulsory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ConfigPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/ControlPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/DrawingPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameEdge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/GameNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swing/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/ConfigPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/ControlPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/ControlPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/DrawingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/DrawingPanel$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/DrawingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swing/GameEdge.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/GameEdge.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swing/GameGraph.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/GameGraph.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swing/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swing/GameNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swing/GameNode.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,11 @@
       <workItem from="1648895199943" duration="431000" />
       <workItem from="1648896414406" duration="13149000" />
       <workItem from="1648914857230" duration="11406000" />
-      <workItem from="1648926551073" duration="2919000" />
+      <workItem from="1648926551073" duration="2934000" />
+      <workItem from="1648929542654" duration="207000" />
+      <workItem from="1648968982990" duration="291000" />
+      <workItem from="1648991966714" duration="2623000" />
+      <workItem from="1649009475032" duration="1180000" />
     </task>
     <servers />
   </component>

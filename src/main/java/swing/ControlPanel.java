@@ -35,6 +35,7 @@ public class ControlPanel extends JPanel {
     }
 
     private void loadGame(ActionEvent actionEvent) {
+        frame.canvas.loadGame();
     }
 
     private void saveGame(ActionEvent actionEvent) {

@@ -1,12 +1,17 @@
 package swing;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Objects;
-
+@Data
 public class GameNode implements Serializable {
     private int coordX;
     private int coordY;
     private int player = 0;
+
+    public GameNode() {
+    }
 
     public GameNode(int coordX, int coordY, int player) {
         this.coordX = coordX;

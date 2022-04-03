@@ -1,13 +1,16 @@
 package swing;
 
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,14 +76,47 @@ public class DrawingPanel extends JPanel {
         });
 
     }
-
+    public void loadGame() {
+        frame.saveGame=true;
+        GameGraph loadGraph=new GameGraph();
+        ObjectMapper mapper=new ObjectMapper();
+        InputStream inputStream= null;
+        try {
+            inputStream = new FileInputStream(new File("E:\\AN2\\ProiectePA\\PA_LAB6\\graph.JSON"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            loadGraph=mapper.readValue(inputStream,GameGraph.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        frame.gameGraph=loadGraph;
+        //frame.canvas.
+        frame.canvas.repaint();
+      //  frame.saveGame=false;
+    }
     void saveGame() {
         BufferedImage im = new BufferedImage(frame.canvas.getWidth(), frame.canvas.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        GameGraph saveGraph= new GameGraph();
         this.paint(im.getGraphics());
         try {
-            File location = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\shot.png");
-            ImageIO.write(im, "PNG", location);
-        } catch (IOException e) {
+            saveGraph=frame.gameGraph;
+            ObjectMapper mapper= new ObjectMapper();
+            File locationPNG = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\shot.png");
+            File locationJSON = new File("E:\\AN2\\ProiectePA\\PA_LAB6\\graph.JSON");
+            ImageIO.write(im, "PNG", locationPNG);
+            mapper.writeValue(locationJSON,saveGraph);
+
+        }
+        catch (StreamWriteException e) {
+
+            System.out.println("Problem saving the file.");
+        } catch (DatabindException e) {
+
+            System.out.println("Binding failed.");
+        }
+        catch (IOException e) {
             System.out.println("Could not write image");
             e.printStackTrace();
         }
@@ -221,4 +257,6 @@ public class DrawingPanel extends JPanel {
             }
         }
     }
+
+
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import org.jgrapht.Graph;
@@ -12,6 +13,7 @@ import org.jgrapht.GraphIterables;
 import org.jgrapht.GraphType;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GameGraph<V extends GameNode, E extends GameEdge> implements Serializable, Graph<V, E> {
     private int rows = 10;
     private int cols = 12;
@@ -69,7 +71,7 @@ public class GameGraph<V extends GameNode, E extends GameEdge> implements Serial
             return true;
 
         if (node.getPlayer() != 0) {
-            System.out.println("node used");
+       //     System.out.println("node used");
             return false;
         }
 
